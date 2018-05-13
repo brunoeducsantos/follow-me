@@ -80,13 +80,23 @@ The encoder is composed by 3x3 convolution layers with 32, 64 and 128 depth join
 The 1X1 convolution is a convolution layer that keeps the spatial information by adding non-linearity and a new depth. For instance, for this architecture a depth of 32.
 Finally, the decoder is composed by 2x upsampling layers followed by convolution + batchnormalization and skip connections with encoder layers to improve lost spatial features resolution.
 
-### Solution Design Approach###
+### Solution Design Approach
 
 The overall strategy for deriving a model architecture began with a base on initial convolution layer of depth 32 with 3x3 filter , 1x1 convolution with depth 8  and decoder with same depth than encoder. The reason for this start was based on image input size 256X256X3. 
 From this point, several convolution layers were added with increasing depth (based on powers of 2). 
 This approach was based on SegNet architecture used by Stanford to segment objects in a image.
 It is important to mention that the 1x1 layer depth increase was correlated with data generation to reduce overfitting and  model performance improvement. The data generation was important to reduce the error (cross-entropy) of training and validation datasets as well overcome the local minimum and allow the netowork to continue learning. 
-In addition, to allow a gradual learning and to avoid overcome the global minimum, it was used a learning rate manual decay from 0.01 to 0.0009 as the error decreases to lower values ( 0.001 magnitude).
+In addition, to allow a gradual learning and to avoid overcome the global minimum, it was used a learning rate manual decay from 0.01 to 0.0009 as the error decreases to lower values ( 0.001 magnitude). The others hyperparameters were:
+* batch_size: 64
+* num_epochs:80
+* steps_per_epoch : 119
+The chosen batchsize was choosen based on performance so that the network could learn faster.
+
+### Final architecture
+The final architecture visualization is given by: 
+[image_1]: https://github.com/BrunoEduardoCSantos/Follow-Me/blob/master/imgs/FollowMeArchitecture.png
+![alt text][image_1] 
+
 
 
 ## Scoring ##
