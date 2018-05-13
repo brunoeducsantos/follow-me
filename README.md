@@ -81,7 +81,7 @@ The 1X1 convolution is a convolution layer that keeps the spatial information by
 Finally, the decoder is composed by 2x upsampling layers followed by convolution + batchnormalization and skip connections with encoder layers to improve lost spatial features resolution.
 
 ### Solution Design Approach
-
+Firstly, the use of encoder and decoders to apply segmentation of objects in a image is based on pixel by pixel learning instead of image invariance filters as used in image classification where the spatial information is not so relevant.
 The overall strategy for deriving a model architecture began with a base on initial convolution layer of depth 32 with 3x3 filter , 1x1 convolution with depth 8  and decoder with same depth than encoder. The reason for this start was based on image input size 256X256X3. 
 From this point, several convolution layers were added with increasing depth (based on powers of 2). 
 This approach was based on SegNet architecture used by Stanford to segment objects in a image.
@@ -90,15 +90,15 @@ In addition, to allow a gradual learning and to avoid overcome the global minimu
 * batch_size: 64
 * num_epochs:80
 * steps_per_epoch : 119
-The chosen batchsize was choosen based on performance so that the network could learn faster.
-
+The chosen mini-batchsize was choosen based on performance so that the network could learn faster.
+PS : Just as a side note, encoder and decoder architecture allows a pixel by pixel learning , although it is still computational expensive.
 ### Final architecture
 The final architecture visualization is given by: 
 
 [image1]: https://github.com/BrunoEduardoCSantos/Follow-Me/blob/master/imgs/FollowMeArchitecture.png "Model Visualization"
 ![alt text][image1] 
 
-
+If the model was generalize for segment other objects this model could be as a base since it already learned basic shapes such as circles , rectangle. Hence, it could be used in a transfer model process to generalize to other objects segmentation.
 
 ## Scoring ##
 
@@ -112,5 +112,6 @@ Using the above the number of detection true_positives, false positives, false n
 
 **How the Final score is Calculated**
 
-The final score is the pixelwise `average_IoU*(n_true_positive/(n_true_positive+n_false_positive+n_false_negative))` on data similar to that provided in sample_evaulation_data
+The final score is the pixelwise `average_IoU*(n_true_positive/(n_true_positive+n_false_positive+n_false_negative))` on data similar to that provided in sample_evaulation_data.
+The model average IoU was : 0.49.
 
