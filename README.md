@@ -70,7 +70,7 @@ To run preprocessing:
 $ python preprocess_ims.py
 ```
 
-## Model Architecture and Training Strategy
+## Model Architecture and Training Strategy ##
 The model is build on three parts:
 * Encoder
 * 1x1 convolution
@@ -79,6 +79,14 @@ The model is build on three parts:
 The encoder is composed by 3x3 convolution layers with 32, 64 and 128 depth joined with a batch normalization. The stride used in each convolution layer is 2x2. 
 The 1X1 convolution is a convolution layer that keeps the spatial information by adding non-linearity and a new depth. For instance, for this architecture a depth of 32.
 Finally, the decoder is composed by 2x upsampling layers followed by convolution + batchnormalization and skip connections with encoder layers to improve lost spatial features resolution.
+
+### Solution Design Approach###
+
+The overall strategy for deriving a model architecture began with a base on initial convolution layer of depth 32 with 3x3 filter , 1x1 convolution with depth 8  and decoder with same depth than encoder. The reason for this start was based on image input size 256X256X3. 
+From this point, several convolution layers were added with increasing depth (based on powers of 2). 
+This approach was based on SegNet architecture used by Stanford to segment objects in a image.
+It is important to mention that the 1x1 layer depth increase was correlated with data generation to reduce overfitting and  model performance improvement. The data generation was important to reduce the error (cross-entropy) of training and validation datasets as well overcome the local minimum and allow the netowork to continue learning. 
+In addition, to allow a gradual learning and to avoid overcome the global minimum, it was used a learning rate manual decay from 0.01 to 0.0009 as the error decreases to lower values ( 0.001 magnitude).
 
 
 ## Scoring ##
