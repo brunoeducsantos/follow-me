@@ -91,6 +91,8 @@ In addition, to allow a gradual learning and to avoid overcome the global minimu
 * num_epochs:80
 * steps_per_epoch : 119
 The chosen mini-batchsize was choosen based on performance so that the network could learn faster.
+
+
 PS : Just as a side note, encoder and decoder architecture allows a pixel by pixel learning , although it is still computational expensive.
 ### Final architecture
 The final architecture visualization is given by: 
