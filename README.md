@@ -94,7 +94,8 @@ The chosen batchsize was choosen based on performance so that the network could 
 
 ### Final architecture
 The final architecture visualization is given by: 
-[image_1] :https://github.com/BrunoEduardoCSantos/Follow-Me/blob/master/imgs/FollowMeArchitecture.png "Model"
+
+[image_1] :https://github.com/BrunoEduardoCSantos/Follow-Me/blob/master/imgs/FollowMeArchitecture.png  
 ![alt text][image_1] 
 
 
