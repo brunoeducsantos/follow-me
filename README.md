@@ -71,8 +71,14 @@ $ python preprocess_ims.py
 ```
 
 ## Model Architecture and Training Strategy
+The model is build on three parts:
+* Encoder
+* 1x1 convolution
+* Decoder
 
-
+The encoder is composed by 3x3 convolution layers with 32, 64 and 128 depth joined with a batch normalization. The stride used in each convolution layer is 2x2. 
+The 1X1 convolution is a convolution layer that keeps the spatial information by adding non-linearity and a new depth. For instance, for this architecture a depth of 32.
+Finally, the decoder is composed by 2x upsampling layers followed by convolution + batchnormalization and skip connections with encoder layers to improve lost spatial features resolution.
 
 
 ## Scoring ##
