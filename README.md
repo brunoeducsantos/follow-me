@@ -119,11 +119,15 @@ The overall strategy for deriving a model architecture began with a base on init
 From this point, several convolution layers were added with increasing depth (based on powers of 2). 
 This approach was based on SegNet architecture used by Stanford to segment objects in a image.
 It is important to mention that the 1x1 layer depth increase was correlated with data generation to reduce overfitting and  model performance improvement. The data generation was important to reduce the error (cross-entropy) of training and validation datasets as well overcome the local minimum and allow the netowork to continue learning. 
-In addition, to allow a gradual learning and to avoid overcome the global minimum, it was used a learning rate manual decay from 0.01 to 0.0009 as the error decreases to lower values ( 0.001 magnitude). The others hyperparameters were:
-* batch_size: 64
-* num_epochs:80
-* steps_per_epoch : 119
-The chosen mini-batchsize was choosen based on performance so that the network could learn faster.
+
+#### Hyperparameters
+The learning rate was selected based on a  manual decay related with :
+* training dataset error 
+* rise of data generated
+* overcome local minimum
+The range of learning rate was: 0.01-0.0009. 
+Regarding the batch_size it was calculated based on initial dataset size of 7100 images by estimating around 120 steps_per_epoch. Therefore, the batch_size was kept equal to 64. Another reason behind this value is save computation time to train the nework.  Eventually, this number could be increased in order to avoid floatuation of error through epochs.
+The chosen number of epochs was 80. The adopted procedure was recording 15 epochs each time and save the weights according to error keep decreasing and the network could converge to a local minimum.
 
 
 PS : Just as a side note, encoder and decoder architecture allows a pixel by pixel learning , although it is still computational expensive.
