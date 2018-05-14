@@ -79,7 +79,7 @@ $ python preprocess_ims.py
 
 ## Step by step running code procedure
 
-Using the Udacity simulator and my drive.py file, the car can be driven autonomously around the track by executing 
+Using the Udacity simulator and my #follower.py# file, the car can be driven autonomously around the track by executing 
 ```sh
 python follower.py model_weights.h5
 ```
@@ -90,8 +90,19 @@ The model is build on three parts:
 * 1x1 convolution
 * Decoder
 
-The encoder is composed by 3x3 convolution layers with 32, 64 and 128 depth joined with a batch normalization. The stride used in each convolution layer is 2x2. 
-The 1X1 convolution is a convolution layer that keeps the spatial information by adding non-linearity and a new depth. For instance, for this architecture a depth of 32.
+The encoder is composed by 3 convolution layers described as follows:
+* 3x3 filter per layer 
+* Depth = {32; 64 ;128}
+* 2X2 stride
+* Batch normalization
+
+The 1X1 convolution is a convolution layer with the following properties:
+* keeps spatial information 
+* add non-linearity
+* allows to combine weights from different depth layer with a similar effect of a fully connected layer
+
+
+. For instance, for this architecture a depth of 32.
 Finally, the decoder is composed by 2x upsampling layers followed by convolution + batchnormalization and skip connections with encoder layers to improve lost spatial features resolution.
 
 ### Solution Design Approach
