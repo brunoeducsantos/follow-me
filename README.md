@@ -144,6 +144,11 @@ The chosen number of epochs was 80. The adopted procedure was recording 15 epoch
 
 ## Generalization to other object class
 
+From the created model based on fully convolution network it was created a remarkable ability of learning high-level representations
+for object recognition by learning high level object contours. 
+
+Since people and dogs/cats have similar high level contours than humans, using transfer learning it would possible increasing encoder/decoder layer depth to detect animals in the images.  
+
 
 
 ## Scoring ##
