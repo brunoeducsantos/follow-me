@@ -5,6 +5,13 @@ In this project, you will train a deep neural network to identify and track a ta
 
 [image_0]: https://github.com/BrunoEduardoCSantos/Follow-Me/blob/master/imgs/follow%20me.PNG
 ![alt text][image_0] 
+## Project Files
+
+My project includes the following files:
+*  [model_training](https://github.com/BrunoEduardoCSantos/Follow-Me/blob/master/code/model_training.ipynb): containing the script to create and train the model
+* [preprocess_ims](https://github.com/BrunoEduardoCSantos/Follow-Me/blob/master/code/preprocess_ims.py): script for pre-process images to feed the model
+* [follower](https://github.com/BrunoEduardoCSantos/Follow-Me/blob/master/code/follower.py): script to activate drone's following mode based on created model to identify people on images
+* [model_weights](https://github.com/BrunoEduardoCSantos/Follow-Me/blob/master/data/weights/model_weights): h5 file containing the weights of the model
 
 ## Setup Instructions
 **Clone the repository**
@@ -68,6 +75,13 @@ Before the network is trained, the images first need to be undergo a preprocessi
 To run preprocessing:
 ```
 $ python preprocess_ims.py
+```
+
+## Step by step running code procedure
+
+Using the Udacity simulator and my drive.py file, the car can be driven autonomously around the track by executing 
+```sh
+python follower.py model_weights.h5
 ```
 
 ## Model Architecture and Training Strategy ##
