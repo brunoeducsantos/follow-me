@@ -5,6 +5,13 @@ In this project, you will train a deep neural network to identify and track a ta
 
 [image_0]: https://github.com/BrunoEduardoCSantos/Follow-Me/blob/master/imgs/follow%20me.PNG
 ![alt text][image_0] 
+## Project Files
+
+My project includes the following files:
+*  [model_training](https://github.com/BrunoEduardoCSantos/Follow-Me/blob/master/code/model_training.ipynb): containing the script to create and train the model
+* [preprocess_ims](https://github.com/BrunoEduardoCSantos/Follow-Me/blob/master/code/preprocess_ims.py): script for pre-process images to feed the model
+* [follower](https://github.com/BrunoEduardoCSantos/Follow-Me/blob/master/code/follower.py): script to activate drone's following mode based on created model to identify people on images
+* [model_weights](https://github.com/BrunoEduardoCSantos/Follow-Me/blob/master/data/weights/model_weights): h5 file containing the weights of the model
 
 ## Setup Instructions
 **Clone the repository**
@@ -70,8 +77,77 @@ To run preprocessing:
 $ python preprocess_ims.py
 ```
 
-## Model Architecture and Training Strategy
+## Step by step running code procedure
 
+Using the Udacity simulator and my #follower.py# file, the car can be driven autonomously around the track by executing 
+```sh
+python follower.py model_weights.h5
+```
+
+## Model Architecture and Training Strategy ##
+The model is build on three parts:
+* Encoder
+* 1x1 convolution
+* Decoder
+
+The encoder is composed by 3 convolution layers described as follows:
+* 3x3 receptive filter per layer 
+* Depth = {32; 64 ;128}
+* 2X2 stride
+* Batch normalization
+
+The 1X1 convolution is a convolution layer with the following properties:
+* keeps spatial information 
+* adds non-linearity if the depth is the same of previous convolution layer
+* allows to combine weights from different depth layer with a similar effect of a fully connected layer
+* Allows to reduce the number of parameters and reduce computational time
+For the chosen architecture the goal was reducing the computational cost as well as keep the spatial information. For instance, in this architecture the number of filters or depth was 32. 
+Neurons in a fully connected layer have full connections to all activations in the previous layer, as seen in regular Neural Networks. Their activations can hence be computed with a matrix multiplication followed by a bias offset. It is worth noting that the difference between FC and CONV layers is that the neurons in the CONV layer are connected only to a local region in the input, and that many of the neurons in a CONV volume share parameters. 
+
+Finally, the decoder is composed by 2x upsampling layers followed by convolution + batchnormalization and skip connections with encoder layers to improve lost spatial features resolution.
+The decoder is composed by the following layers:
+* Upsampling layers ( bilinear interpolation)
+* Convolution Layers (Depth= {32,64,128},3X3 receptive filter, 2x2 stride)
+* Skip connections
+
+By upsampling to desired size will be possible to calculate the pixel values at each point using a interpolation method such as bilinear interpolation.
+Convolution layers allow to choose relevant features on images to identify objects in a image.
+Finally, skip connections allow to provide information lost on encoder layers by increasing spatial resolution.
+
+The final architecture visualization is given by: 
+
+[image1]: https://github.com/BrunoEduardoCSantos/Follow-Me/blob/master/imgs/FollowMeArchitecture.png "Model Visualization"
+![alt text][image1] 
+
+
+### Solution Design Approach
+Firstly, the use of encoder and decoders to apply segmentation of objects in a image is based on pixel by pixel learning instead of image invariance filters as used in image classification where the spatial information is not so relevant.
+The overall strategy for deriving a model architecture began with a base on initial convolution layer of depth 32 with 3x3 filter , 1x1 convolution with depth 8  and decoder with same depth than encoder. The reason for this start was based on image input size 256X256X3. 
+From this point, several convolution layers were added with increasing depth (based on powers of 2). 
+This approach was based on SegNet architecture used by Stanford to segment objects in a image.
+It is important to mention that the 1x1 layer depth increase was correlated with data generation to reduce overfitting and  model performance improvement. The data generation was important to reduce the error (cross-entropy) of training and validation datasets as well overcome the local minimum and allow the netowork to continue learning. 
+
+#### Hyperparameters
+The learning rate was selected based on a  manual decay related with :
+* training dataset error 
+* rise of data generated
+* overcome local minimum
+
+The range of learning rate was: 0.01-0.0009. 
+
+
+Regarding the batch_size it was calculated based on initial dataset size of 7100 images by estimating around 120 steps_per_epoch. Therefore, the batch_size was kept equal to 64. Another reason behind this value is save computation time to train the nework.  Eventually, this number could be increased in order to avoid floatuation of error through epochs.
+
+
+The chosen number of epochs was 80. The adopted procedure was recording 15 epochs each time and save the weights according to error keep decreasing and the network could converge to a local minimum.
+
+
+## Generalization to other object class
+
+From the created model based on fully convolution network it was created a remarkable ability of learning high-level representations
+for object recognition by learning high level object contours. 
+
+Since people and dogs/cats have similar high level contours than humans, using transfer learning it would possible increasing encoder/decoder layer depth to detect animals in the images.  
 
 
 
@@ -87,5 +163,6 @@ Using the above the number of detection true_positives, false positives, false n
 
 **How the Final score is Calculated**
 
-The final score is the pixelwise `average_IoU*(n_true_positive/(n_true_positive+n_false_positive+n_false_negative))` on data similar to that provided in sample_evaulation_data
+The final score is the pixelwise `average_IoU*(n_true_positive/(n_true_positive+n_false_positive+n_false_negative))` on data similar to that provided in sample_evaulation_data.
+The model average IoU was : 0.49.
 
