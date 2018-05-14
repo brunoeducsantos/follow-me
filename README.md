@@ -101,7 +101,8 @@ The 1X1 convolution is a convolution layer with the following properties:
 * adds non-linearity if the depth is the same of previous convolution layer
 * allows to combine weights from different depth layer with a similar effect of a fully connected layer
 * Allows to reduce the number of parameters and reduce computational time
-For the chosen architecture the goal was reducing the computational cost as well as keep the spatial information. For instance, in this architecture the number of filters or depth was 32.
+For the chosen architecture the goal was reducing the computational cost as well as keep the spatial information. For instance, in this architecture the number of filters or depth was 32. 
+Neurons in a fully connected layer have full connections to all activations in the previous layer, as seen in regular Neural Networks. Their activations can hence be computed with a matrix multiplication followed by a bias offset. It is worth noting that the difference between FC and CONV layers is that the neurons in the CONV layer are connected only to a local region in the input, and that many of the neurons in a CONV volume share parameters. 
 
 Finally, the decoder is composed by 2x upsampling layers followed by convolution + batchnormalization and skip connections with encoder layers to improve lost spatial features resolution.
 The decoder is composed by the following layers:
@@ -112,6 +113,11 @@ The decoder is composed by the following layers:
 By upsampling to desired size will be possible to calculate the pixel values at each point using a interpolation method such as bilinear interpolation.
 Convolution layers allow to choose relevant features on images to identify objects in a image.
 Finally, skip connections allow to provide information lost on encoder layers by increasing spatial resolution.
+
+The final architecture visualization is given by: 
+[image1]: https://github.com/BrunoEduardoCSantos/Follow-Me/blob/master/imgs/FollowMeArchitecture.png "Model Visualization"
+![alt text][image1] 
+
 
 ### Solution Design Approach
 Firstly, the use of encoder and decoders to apply segmentation of objects in a image is based on pixel by pixel learning instead of image invariance filters as used in image classification where the spatial information is not so relevant.
@@ -135,13 +141,7 @@ Regarding the batch_size it was calculated based on initial dataset size of 7100
 The chosen number of epochs was 80. The adopted procedure was recording 15 epochs each time and save the weights according to error keep decreasing and the network could converge to a local minimum.
 
 
-### Final architecture
-The final architecture visualization is given by: 
 
-[image1]: https://github.com/BrunoEduardoCSantos/Follow-Me/blob/master/imgs/FollowMeArchitecture.png "Model Visualization"
-![alt text][image1] 
-
-If the model was generalize for segment other objects this model could be as a base since it already learned basic shapes such as circles , rectangle. Hence, it could be used in a transfer model process to generalize to other objects segmentation.
 
 ## Scoring ##
 
