@@ -125,12 +125,16 @@ The learning rate was selected based on a  manual decay related with :
 * training dataset error 
 * rise of data generated
 * overcome local minimum
+
 The range of learning rate was: 0.01-0.0009. 
+
+
 Regarding the batch_size it was calculated based on initial dataset size of 7100 images by estimating around 120 steps_per_epoch. Therefore, the batch_size was kept equal to 64. Another reason behind this value is save computation time to train the nework.  Eventually, this number could be increased in order to avoid floatuation of error through epochs.
+
+
 The chosen number of epochs was 80. The adopted procedure was recording 15 epochs each time and save the weights according to error keep decreasing and the network could converge to a local minimum.
 
 
-PS : Just as a side note, encoder and decoder architecture allows a pixel by pixel learning , although it is still computational expensive.
 ### Final architecture
 The final architecture visualization is given by: 
 
