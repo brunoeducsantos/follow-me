@@ -115,6 +115,7 @@ Convolution layers allow to choose relevant features on images to identify objec
 Finally, skip connections allow to provide information lost on encoder layers by increasing spatial resolution.
 
 The final architecture visualization is given by: 
+
 [image1]: https://github.com/BrunoEduardoCSantos/Follow-Me/blob/master/imgs/FollowMeArchitecture.png "Model Visualization"
 ![alt text][image1] 
 
@@ -140,6 +141,8 @@ Regarding the batch_size it was calculated based on initial dataset size of 7100
 
 The chosen number of epochs was 80. The adopted procedure was recording 15 epochs each time and save the weights according to error keep decreasing and the network could converge to a local minimum.
 
+
+## Generalization to other object class
 
 
 
