@@ -91,19 +91,27 @@ The model is build on three parts:
 * Decoder
 
 The encoder is composed by 3 convolution layers described as follows:
-* 3x3 filter per layer 
+* 3x3 receptive filter per layer 
 * Depth = {32; 64 ;128}
 * 2X2 stride
 * Batch normalization
 
 The 1X1 convolution is a convolution layer with the following properties:
 * keeps spatial information 
-* add non-linearity
+* adds non-linearity if the depth is the same of previous convolution layer
 * allows to combine weights from different depth layer with a similar effect of a fully connected layer
+* Allows to reduce the number of parameters and reduce computational time
+For the chosen architecture the goal was reducing the computational cost as well as keep the spatial information. For instance, in this architecture the number of filters or depth was 32.
 
-
-. For instance, for this architecture a depth of 32.
 Finally, the decoder is composed by 2x upsampling layers followed by convolution + batchnormalization and skip connections with encoder layers to improve lost spatial features resolution.
+The decoder is composed by the following layers:
+* Upsampling layers ( bilinear interpolation)
+* Convolution Layers (Depth= {32,64,128},3X3 receptive filter, 2x2 stride)
+* Skip connections
+
+By upsampling to desired size will be possible to calculate the pixel values at each point using a interpolation method such as bilinear interpolation.
+Convolution layers allow to choose relevant features on images to identify objects in a image.
+Finally, skip connections allow to provide information lost on encoder layers by increasing spatial resolution.
 
 ### Solution Design Approach
 Firstly, the use of encoder and decoders to apply segmentation of objects in a image is based on pixel by pixel learning instead of image invariance filters as used in image classification where the spatial information is not so relevant.
