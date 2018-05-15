@@ -1,7 +1,7 @@
 # Follow Me
 
 ## Overview
-In this project, you will train a deep neural network to identify and track a target in simulation. So-called “follow me” applications like this are key to many fields of robotics and the very same techniques you apply here could be extended to scenarios like advanced cruise control in autonomous vehicles or human-robot collaboration in industry.
+In this project, a deep neural network was used to identify and track a target in simulation. So-called “follow me” applications like this are key to many fields of robotics and the very same techniques you apply here could be extended to scenarios like advanced cruise control in autonomous vehicles or human-robot collaboration in industry.
 
 [image_0]: https://github.com/BrunoEduardoCSantos/Follow-Me/blob/master/imgs/follow%20me.PNG
 ![alt text][image_0] 
