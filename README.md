@@ -168,5 +168,5 @@ The model average IoU was : 0.49.
 
 
 ## Disclamer
-This project was cloned from [Udacity perception project](https://github.com/udacity/RoboND-Perception-Project) in the context of [Robotics Software Engineer nanodegree](https://www.udacity.com/course/robotics-software-engineer--nd209).
+This project was cloned from [Udacity deep learning project](https://github.com/udacity/RoboND-DeepLearning-Project) in the context of [Robotics Software Engineer nanodegree](https://www.udacity.com/course/robotics-software-engineer--nd209).
 
