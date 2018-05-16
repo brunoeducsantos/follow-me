@@ -166,3 +166,7 @@ Using the above the number of detection true_positives, false positives, false n
 The final score is the pixelwise `average_IoU*(n_true_positive/(n_true_positive+n_false_positive+n_false_negative))` on data similar to that provided in sample_evaulation_data.
 The model average IoU was : 0.49.
 
+
+## Disclamer
+This project was cloned from [Udacity perception project](https://github.com/udacity/RoboND-Perception-Project) in the context of [Robotics Software Engineer nanodegree](https://www.udacity.com/course/robotics-software-engineer--nd209).
+
