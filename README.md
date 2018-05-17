@@ -76,6 +76,10 @@ To run preprocessing:
 ```
 $ python preprocess_ims.py
 ```
+After pre-processing the raw images ,we obtained the processed images as well as the masks. On the following picture is possible visualize a ground truth image ( i.e. processed image with mask).
+
+[image2]:  https://github.com/BrunoEduardoCSantos/Follow-Me/blob/master/imgs/download.png "Ground truth"
+![alt text][image2] 
 
 ## Step by step running code procedure
 
