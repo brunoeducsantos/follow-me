@@ -170,6 +170,21 @@ Using the above the number of detection true_positives, false positives, false n
 The final score is the pixelwise `average_IoU*(n_true_positive/(n_true_positive+n_false_positive+n_false_negative))` on data similar to that provided in sample_evaulation_data.
 The model average IoU was : 0.49.
 
+For better visual evaluation about the performance of the model, in the following pictures there are resulting predictions compared with ground truth as well as original images.
+[image3]:https://github.com/BrunoEduardoCSantos/Follow-Me/blob/master/imgs/hero.png "Hero prediction"
+![alt text][image3] 
+
+[image4]:https://github.com/BrunoEduardoCSantos/Follow-Me/blob/master/imgs/patrol.png "People prediction"
+![alt text][image4] 
+
+[image5]:https://github.com/BrunoEduardoCSantos/Follow-Me/blob/master/imgs/people.png "People prediction"
+![alt text][image5] 
+
+[image6]:https://github.com/BrunoEduardoCSantos/Follow-Me/blob/master/imgs/1_run3cam1_00040_prediction.png "People and Hero prediction"
+![alt text][image6] 
+
+
+
 
 ## Disclamer
 This project was cloned from [Udacity deep learning project](https://github.com/udacity/RoboND-DeepLearning-Project) in the context of [Robotics Software Engineer nanodegree](https://www.udacity.com/course/robotics-software-engineer--nd209).
