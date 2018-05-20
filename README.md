@@ -179,10 +179,7 @@ For better visual evaluation about the performance of the model, in the followin
 ![alt text][image4] 
 
 [image5]:https://github.com/BrunoEduardoCSantos/Follow-Me/blob/master/imgs/people.png "People prediction"
-![alt text][image5] 
-
-[image6]:https://github.com/BrunoEduardoCSantos/Follow-Me/blob/master/imgs/1_run3cam1_00040_prediction.png "People and Hero prediction"
-![alt text][image6] 
+[alt text][image5] 
 
 
 
