@@ -179,8 +179,8 @@ For better visual evaluation about the performance of the model, in the followin
 ![alt text][image4] 
 
 [image5]:https://github.com/BrunoEduardoCSantos/Follow-Me/blob/master/imgs/people.png "People prediction"
-[alt text][image5] 
-
+![alt text][image5] 
+[Sequence of images are: rgb images (left); image with masks / ground truth (mid) ; Model preodiction (right)]
 
 
 
