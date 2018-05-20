@@ -171,6 +171,7 @@ The final score is the pixelwise `average_IoU*(n_true_positive/(n_true_positive+
 The model average IoU was : 0.49.
 
 For better visual evaluation about the performance of the model, in the following pictures there are resulting predictions compared with ground truth as well as original images.
+
 [image3]:https://github.com/BrunoEduardoCSantos/Follow-Me/blob/master/imgs/hero.png "Hero prediction"
 ![alt text][image3] 
 
