@@ -39,9 +39,9 @@ If for some reason you choose not to use Anaconda, you must install the followin
 
 
 ## Collecting Training Data ##
-A simple training dataset has been provided in this project's repository. This dataset will allow you to verify that the segmentation network is semi-functional. However, if your interested in improving your score,you may want to collect additional training data. To do it, please see the following steps.
-
-The data directory is organized as follows:
+A simple training dataset has been provided in this project's repository. This dataset will allow you to verify that the segmentation network is semi-functional. However, if your interested in improving your score,you may want to collect additional training data. To do it, please see the following steps:
+* Download the simulator [here](https://github.com/udacity/RoboND-DeepLearning/releases/latest)
+* Create  data directory is organized as follows:
 ```
 data/runs - contains the results of prediction runs
 data/train/images - contains images for the training set
@@ -53,6 +53,8 @@ data/weights - contains trained TensorFlow models
 data/raw_sim_data/train/run1
 data/raw_sim_data/validation/run1
 ```
+* Collect data in training mode
+
 ### Image Preprocessing ###
 Before the network is trained, the images first need to be undergo a preprocessing step. The preprocessing step transforms the depth masks from the sim, into binary masks suitable for training a neural network. It also converts the images from .png to .jpeg to create a reduced sized dataset, suitable for uploading to AWS. 
 To run preprocessing:
@@ -66,10 +68,11 @@ After pre-processing the raw images ,we obtained the processed images as well as
 
 ## Step by step running code procedure
 
-Using the Udacity simulator and my #follower.py# file, the car can be driven autonomously around the track by executing 
+Using the Udacity simulator and my *follower.py* file, the car can be driven autonomously around the track by executing 
 ```sh
 python follower.py model_weights.h5
 ```
+After launch the simulator in autonomous mode, which combined with the previous script will allows the Quad to follows autonomously the "hero".
 
 ## Model Architecture and Training Strategy ##
 The model is build on three parts:
