@@ -53,7 +53,7 @@ data/weights - contains trained TensorFlow models
 data/raw_sim_data/train/run1
 data/raw_sim_data/validation/run1
 ```
-* Collect data in training mode
+* Collect data from the simulator using training mode
 
 ### Image Preprocessing ###
 Before the network is trained, the images first need to be undergo a preprocessing step. The preprocessing step transforms the depth masks from the sim, into binary masks suitable for training a neural network. It also converts the images from .png to .jpeg to create a reduced sized dataset, suitable for uploading to AWS. 
@@ -61,7 +61,7 @@ To run preprocessing:
 ```
 $ python preprocess_ims.py
 ```
-After pre-processing the raw images ,we obtained the processed images as well as the masks. On the following picture is possible visualize a ground truth image ( i.e. processed image with mask).
+After pre-processing the raw images ,we obtained the processed images as well as the masks. On the following picture is possible visualize a ground truth image (i.e. processed image with mask).
 
 [image2]:  https://github.com/BrunoEduardoCSantos/Follow-Me/blob/master/imgs/download.png "Ground truth"
 ![alt text][image2] 
@@ -87,22 +87,28 @@ The encoder is composed by 3 convolution layers described as follows:
 * Batch normalization
 
 The 1X1 convolution is a convolution layer with the following properties:
+
 * keeps spatial information 
 * adds non-linearity if the depth is the same of previous convolution layer
 * allows to combine weights from different depth layer with a similar effect of a fully connected layer
 * Allows to reduce the number of parameters and reduce computational time
+
 For the chosen architecture the goal was reducing the computational cost as well as keep the spatial information. For instance, in this architecture the number of filters or depth was 32. 
 Neurons in a fully connected layer have full connections to all activations in the previous layer, as seen in regular Neural Networks. Their activations can hence be computed with a matrix multiplication followed by a bias offset. It is worth noting that the difference between FC and CONV layers is that the neurons in the CONV layer are connected only to a local region in the input, and that many of the neurons in a CONV volume share parameters. 
 
-Finally, the decoder is composed by 2x upsampling layers followed by convolution + batchnormalization and skip connections with encoder layers to improve lost spatial features resolution.
+Finally, the decoder is composed by bilinear upsampling layers followed by convolution + batch-normalization and skip connections with encoder layers to improve lost of spatial features resolution.
+
 The decoder is composed by the following layers:
+
 * Upsampling layers ( bilinear interpolation)
 * Convolution Layers (Depth= {32,64,128},3X3 receptive filter, 2x2 stride)
 * Skip connections
 
-By upsampling to desired size will be possible to calculate the pixel values at each point using a interpolation method such as bilinear interpolation.
-Convolution layers allow to choose relevant features on images to identify objects in a image.
-Finally, skip connections allow to provide information lost on encoder layers by increasing spatial resolution.
+Bilinear upsampling is a resampling technique that utilizes the weighted average of four nearest known pixels, located diagonally to a given pixel, to estimate a new pixel intensity value.
+
+Including convolution layers allow to choose relevant features on images to identify objects in a image.
+
+Finally, skip connections allow to provide information lost on encoder layers by increasing spatial resolution. This method is important to the decoder since the upsampling doesn’t recover all the spatial information,i.e, the interpolation process need more information from the input image to capture more spatial resolution.
 
 The final architecture visualization is given by: 
 
