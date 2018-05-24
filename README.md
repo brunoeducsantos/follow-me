@@ -5,9 +5,10 @@ In this project, a deep neural network was used to identify and track a target i
 
 [image_0]: https://github.com/BrunoEduardoCSantos/Follow-Me/blob/master/imgs/follow%20me.PNG
 ![alt text][image_0] 
+
 ## Project Files
 
-My project includes the following files:
+The project includes the following files:
 *  [model_training](https://github.com/BrunoEduardoCSantos/Follow-Me/blob/master/code/model_training.ipynb): containing the script to create and train the model
 * [preprocess_ims](https://github.com/BrunoEduardoCSantos/Follow-Me/blob/master/code/preprocess_ims.py): script for pre-process images to feed the model
 * [follower](https://github.com/BrunoEduardoCSantos/Follow-Me/blob/master/code/follower.py): script to activate drone's following mode based on created model to identify people on images
@@ -18,23 +19,6 @@ My project includes the following files:
 ```
 $ git clone https://github.com/BrunoEduardoCSantos/Follow-Me.git
 ```
-
-**Download the data**
-
-Save the following three files into the data folder of the cloned repository. 
-
-[Training Data](https://s3-us-west-1.amazonaws.com/udacity-robotics/Deep+Learning+Data/Lab/train.zip) 
-
-[Validation Data](https://s3-us-west-1.amazonaws.com/udacity-robotics/Deep+Learning+Data/Lab/validation.zip)
-
-[Sample Evaluation Data](https://s3-us-west-1.amazonaws.com/udacity-robotics/Deep+Learning+Data/Project/sample_evaluation_data.zip)
-
-**Download the QuadSim binary**
-
-To interface your neural net with the QuadSim simulator, you must use a version QuadSim that has been custom tailored for this project. The previous version that you might have used for the Controls lab will not work.
-
-The simulator binary can be downloaded [here](https://github.com/udacity/RoboND-DeepLearning/releases/latest)
-
 **Install Dependencies**
 
 You'll need Python 3 and Jupyter Notebooks installed to do this project.  The best way to get setup with these if you are not already is to use Anaconda following along with the [RoboND-Python-Starterkit](https://github.com/udacity/RoboND-Python-StarterKit).
@@ -54,9 +38,8 @@ If for some reason you choose not to use Anaconda, you must install the followin
 * PyQt4/Pyqt5
 
 
-
 ## Collecting Training Data ##
-A simple training dataset has been provided in this project's repository. This dataset will allow you to verify that your segmentation network is semi-functional. However, if your interested in improving your score,you may want to collect additional training data. To do it, please see the following steps.
+A simple training dataset has been provided in this project's repository. This dataset will allow you to verify that the segmentation network is semi-functional. However, if your interested in improving your score,you may want to collect additional training data. To do it, please see the following steps.
 
 The data directory is organized as follows:
 ```
